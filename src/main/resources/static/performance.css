@@ -1,0 +1,76 @@
+
+.performance-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.performance-card {
+    background: white;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.performance-card h3 {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.performance-card h2 {
+    font-size: 28px;
+    color: #2563eb;
+}
+
+.card {
+    margin-bottom: 25px;
+    overflow-x: auto;
+}
+
+.card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+}
+
+.card th,
+.card td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+}
+
+.card th {
+    background: #f1f5f9;
+}
+
+@media (max-width: 768px) {
+    .performance-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Performance Analytics Charts */
+
+.performance-chart {
+    width: 100%;
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.performance-chart h3 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.performance-chart canvas {
+    width: 100% !important;
+    max-height: 350px;
+}

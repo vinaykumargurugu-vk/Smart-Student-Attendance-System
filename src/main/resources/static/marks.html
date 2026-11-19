@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <h2>Student System</h2>
+
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="students.html">Students</a>
+                <a href="attendance.html">Attendance</a>
+                <a href="marks.html" class="active">Marks</a>
+                <a href="performance.html">Performance</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+
+            <h1>Marks Management</h1>
+            <p>Manage student examination marks.</p>
+
+            <section class="card">
+                <h2>Add Student Marks</h2>
+
+                <form id="marksForm">
+
+                    <label>Student Roll Number</label>
+                    <input type="text" id="rollNo"
+                           placeholder="Enter roll number" required>
+
+                    <label>Exam ID</label>
+                    <input type="number" id="examId"
+                           placeholder="Enter exam ID" required>
+
+                    <label>Obtained Marks</label>
+                    <input type="number" id="obtainedMarks"
+                           placeholder="Enter marks" step="0.01"
+                           min="0" required>
+
+                    <button type="submit">Add Marks</button>
+
+                </form>
+
+                <p id="message"></p>
+            </section>
+
+            <section class="card">
+                <h2>Search Student Marks</h2>
+
+                <input type="text" id="searchRollNo"
+                       placeholder="Enter student roll number">
+
+                <button onclick="searchMarks()">Search</button>
+                <button onclick="loadAllMarks()">Show All Marks</button>
+            </section>
+
+            <section class="card">
+                <h2>Student Marks Records</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Roll No</th>
+                            <th>Name</th>
+                            <th>Subject</th>
+                            <th>Exam</th>
+                            <th>Obtained</th>
+                            <th>Maximum</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="marksTableBody">
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="marks.js"></script>
+
+</body>
+</html>

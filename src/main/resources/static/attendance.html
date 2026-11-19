@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h2>Student System</h2>
+
+            <nav>
+                <a href="index.html">Dashboard</a>
+                <a href="students.html">Students</a>
+                <a href="attendance.html" class="active">Attendance</a>
+                <a href="marks.html">Marks</a>
+                <a href="performance.html">Performance</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <h1>Attendance Management</h1>
+            <p>Manage student attendance records</p>
+
+            <hr>
+
+            <h2>Mark Attendance</h2>
+
+            <form id="attendanceForm">
+
+                <label>Student Roll Number</label>
+                <input type="text" id="roll_no"
+                       placeholder="Enter roll number" required>
+
+                <label>Subject Code</label>
+                <input type="text" id="subject_code"
+                       placeholder="Enter subject code" required>
+
+                <label>Attendance Date</label>
+                <input type="date" id="attendance_date" required>
+
+                <label>Attendance Status</label>
+                <select id="status" required>
+                    <option value="PRESENT">Present</option>
+                    <option value="ABSENT">Absent</option>
+                </select>
+
+                <button type="submit">Mark Attendance</button>
+
+            </form>
+
+            <hr>
+
+            <h2>Attendance Records</h2>
+
+            <button onclick="loadAttendance()">View Attendance</button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="attendanceTable">
+                </tbody>
+            </table>
+
+            <hr>
+
+            <h2>Attendance Percentage</h2>
+
+            <button onclick="loadPercentage()">View Percentage</button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Subject</th>
+                        <th>Total Classes</th>
+                        <th>Present</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+
+                <tbody id="percentageTable">
+                </tbody>
+            </table>
+
+            <hr>
+
+            <h2>Low Attendance Alerts (Below 75%)</h2>
+
+            <button onclick="loadLowAttendance()">View Alerts</button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Subject</th>
+                        <th>Attendance Percentage</th>
+                    </tr>
+                </thead>
+
+                <tbody id="lowAttendanceTable">
+                </tbody>
+            </table>
+
+        </main>
+    </div>
+
+    <script src="attendance.js"></script>
+
+</body>
+</html>

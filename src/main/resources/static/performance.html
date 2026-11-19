@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="performance.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <h2>Student System</h2>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="students.html">Students</a>
+            <a href="attendance.html">Attendance</a>
+            <a href="marks.html">Marks</a>
+            <a href="performance.html" class="active">Performance</a>
+            <a href="reports.html">Reports</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <h1>Performance Dashboard</h1>
+        <p>Monitor student academic performance and achievements.</p>
+
+        <!-- Performance Summary -->
+        <section class="performance-cards">
+            <div class="performance-card">
+                <h3>Students Evaluated</h3>
+                <h2 id="totalStudents">0</h2>
+            </div>
+
+            <div class="performance-card">
+                <h3>Average Percentage</h3>
+                <h2 id="averagePercentage">0%</h2>
+            </div>
+
+            <div class="performance-card">
+                <h3>Highest Percentage</h3>
+                <h2 id="highestPercentage">0%</h2>
+            </div>
+
+            <div class="performance-card">
+                <h3>Low Performers</h3>
+                <h2 id="lowPerformers">0</h2>
+            </div>
+        </section>
+
+        <!-- Top Performer -->
+        <section class="card">
+            <h2>Top Performing Student</h2>
+            <h3 id="topStudentName">Loading...</h3>
+            <p id="topStudentRoll">Roll Number: --</p>
+        </section>
+
+        <!-- Performance Charts -->
+        <section class="card">
+            <h2>Performance Analytics</h2>
+
+            <div class="performance-chart">
+                <h3>Student-wise Performance</h3>
+                <canvas id="studentPerformanceChart"></canvas>
+            </div>
+
+            <div class="performance-chart">
+                <h3>Subject-wise Performance</h3>
+                <canvas id="subjectPerformanceChart"></canvas>
+            </div>
+
+            <div class="performance-chart">
+                <h3>Grade Distribution</h3>
+                <canvas id="gradeDistributionChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Top 5 Performers -->
+        <section class="card">
+            <h2>Top 5 Performers</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th>Obtained Marks</th>
+                        <th>Maximum Marks</th>
+                        <th>Percentage</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody id="topPerformersTable"></tbody>
+            </table>
+        </section>
+
+        <!-- Overall Performance -->
+        <section class="card">
+            <h2>Overall Student Performance</h2>
+            <button onclick="loadOverallPerformance()">
+                Refresh Overall Performance
+            </button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th>Obtained Marks</th>
+                        <th>Maximum Marks</th>
+                        <th>Percentage</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody id="overallTable"></tbody>
+            </table>
+        </section>
+
+        <!-- Subject-wise Performance -->
+        <section class="card">
+            <h2>Subject-wise Performance</h2>
+            <button onclick="loadSubjectPerformance()">
+                Refresh Subject Performance
+            </button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th>Subject</th>
+                        <th>Obtained Marks</th>
+                        <th>Maximum Marks</th>
+                        <th>Percentage</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody id="subjectTable"></tbody>
+            </table>
+        </section>
+
+        <!-- Low Performance -->
+        <section class="card">
+            <h2>Low Performance Alerts (Below 40%)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th>Obtained Marks</th>
+                        <th>Maximum Marks</th>
+                        <th>Percentage</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody id="lowPerformanceTable"></tbody>
+            </table>
+        </section>
+
+    </main>
+</div>
+
+<!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Dashboard JavaScript -->
+<script src="performance.js"></script>
+
+</body>
+</html>

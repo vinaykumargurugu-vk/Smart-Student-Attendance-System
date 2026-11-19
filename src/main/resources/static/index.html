@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Student Management Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>StudentMS</h2>
+
+            <nav>
+                <a href="#" class="active">Dashboard</a>
+                <a href="students.html">Students</a>
+                <a href="attendance.html">Attendance</a>
+                <a href="marks.html">Marks</a>
+                <a href="performance.html">Performance</a>
+                <a href="reports.html">Reports</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <header>
+                <h1>Student Dashboard</h1>
+                <p>Welcome to Smart Student Management System</p>
+            </header>
+
+            <!-- Dashboard Cards -->
+            <section class="dashboard-cards">
+
+                <div class="card">
+                    <h3>Total Students</h3>
+                    <h2 id="totalStudents">Loading...</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Average Attendance</h3>
+                    <h2 id="averageAttendance">Loading...</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Average Performance</h3>
+                    <h2 id="averagePerformance">Loading...</h2>
+                </div>
+
+                <div class="card">
+                    <h3>Total Attendance Records</h3>
+                    <h2 id="totalAttendance">Loading...</h2>
+                </div>
+
+            </section>
+
+            <!-- Top Performers -->
+            <section class="content-section">
+                <h2>Top 5 Performers</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Roll Number</th>
+                            <th>Student Name</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="topPerformers">
+                        <tr>
+                            <td colspan="3">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Alerts -->
+            <section class="alerts">
+
+                <div class="content-section">
+                    <h2>Low Attendance Alerts</h2>
+                    <div id="attendanceAlerts">Loading...</div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Academic Alerts</h2>
+                    <div id="academicAlerts">Loading...</div>
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

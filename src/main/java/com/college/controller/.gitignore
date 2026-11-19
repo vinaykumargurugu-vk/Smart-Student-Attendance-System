@@ -1,0 +1,21 @@
+# Maven build files
+target/
+
+# IDE files
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Java compiled files
+*.class
+
+# Operating system files
+.DS_Store
+Thumbs.db

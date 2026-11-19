@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="faculty.css">
+</head>
+<body>
+
+    <div class="faculty-container">
+
+        <header>
+            <h1>Faculty Dashboard</h1>
+            <button id="logoutBtn">Logout</button>
+        </header>
+
+        <!-- Faculty Profile -->
+        <section>
+            <h2>My Profile</h2>
+            <div id="facultyProfile">
+                Loading faculty profile...
+            </div>
+        </section>
+
+        <!-- Assigned Subjects -->
+        <section>
+            <h2>My Assigned Subjects</h2>
+            <div id="subjectsContainer">
+                Loading subjects...
+            </div>
+        </section>
+
+        <!-- Enrolled Students -->
+        <section>
+            <h2>Enrolled Students</h2>
+
+            <label for="subjectSelect">Select Subject:</label>
+
+            <select id="subjectSelect">
+                <option value="">Select a subject</option>
+            </select>
+
+            <div id="studentsContainer">
+                Select a subject to view students.
+            </div>
+        </section>
+
+        <!-- Attendance Management -->
+        <section>
+            <h2>Attendance Management</h2>
+
+            <label for="attendanceDate">Select Date:</label>
+            <input type="date" id="attendanceDate">
+
+            <div id="attendanceContainer">
+                Select a subject to mark attendance.
+            </div>
+
+            <button id="saveAttendanceBtn">
+                Save Attendance
+            </button>
+
+            <p id="attendanceMessage"></p>
+        </section>
+
+        <!-- Attendance Summary -->
+        <section class="dashboard-section">
+
+            <h2>Attendance Summary</h2>
+
+            <p>View subject-wise attendance statistics for today.</p>
+
+            <div class="summary-controls">
+
+                <div>
+                    <label for="summarySubject">Select Subject</label>
+
+                    <select id="summarySubject">
+                        <option value="">Loading subjects...</option>
+                    </select>
+                </div>
+
+                <button type="button" id="refreshSummaryBtn">
+                    Refresh Summary
+                </button>
+
+            </div>
+
+            <p id="summaryMessage"></p>
+
+            <div class="attendance-summary-cards">
+
+                <div class="summary-card">
+                    <h3>Total Students</h3>
+                    <p id="totalStudents">0</p>
+                </div>
+
+                <div class="summary-card present-card">
+                    <h3>Present Students</h3>
+                    <p id="presentStudents">0</p>
+                </div>
+
+                <div class="summary-card absent-card">
+                    <h3>Absent Students</h3>
+                    <p id="absentStudents">0</p>
+                </div>
+
+                <div class="summary-card percentage-card">
+                    <h3>Attendance Percentage</h3>
+                    <p id="attendancePercentage">0%</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Attendance History -->
+        <section class="dashboard-section">
+
+            <h2>Attendance History</h2>
+
+            <p>View attendance records for your assigned subjects.</p>
+
+            <div class="history-controls">
+
+                <div>
+                    <label for="historySubject">Select Subject</label>
+
+                    <select id="historySubject">
+                        <option value="">Loading subjects...</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="historyDate">Select Date</label>
+                    <input type="date" id="historyDate">
+                </div>
+
+                <button type="button" id="viewHistoryBtn">
+                    View History
+                </button>
+
+            </div>
+
+            <p id="historyMessage"></p>
+
+            <div class="table-container">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Roll Number</th>
+                            <th>Student Name</th>
+                            <th>Subject Code</th>
+                            <th>Subject Name</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="historyTableBody">
+                        <tr>
+                            <td colspan="6">
+                                Select a subject and date.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Low Attendance Report -->
+        <section class="dashboard-section">
+
+            <h2>Low Attendance Report</h2>
+
+            <p>Identify students whose attendance is below 75%.</p>
+
+            <div class="low-attendance-controls">
+
+                <div>
+                    <label for="lowAttendanceSubject">
+                        Select Subject
+                    </label>
+
+                    <select id="lowAttendanceSubject">
+                        <option value="">Loading subjects...</option>
+                    </select>
+                </div>
+
+                <button type="button" id="refreshLowAttendanceBtn">
+                    Refresh Report
+                </button>
+
+            </div>
+
+            <p id="lowAttendanceMessage"></p>
+
+            <div class="table-container">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Roll Number</th>
+                            <th>Student Name</th>
+                            <th>Total Classes</th>
+                            <th>Attended</th>
+                            <th>Missed</th>
+                            <th>Attendance %</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="lowAttendanceTableBody">
+                        <tr>
+                            <td colspan="7">
+                                Select a subject to view the report.
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Faculty Marks Management -->
+        <section class="dashboard-section">
+
+            <h2>Marks Management</h2>
+
+            <p>
+                Select a subject and exam to enter or update student marks.
+            </p>
+
+            <div class="marks-controls">
+
+                <div>
+                    <label for="marksSubject">Select Subject</label>
+
+                    <select id="marksSubject">
+                        <option value="">Select Subject</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="marksExam">Select Exam</label>
+
+                    <select id="marksExam" disabled>
+                        <option value="">Select Exam</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <p id="marksMessage"></p>
+
+            <div class="table-container">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Roll Number</th>
+                            <th>Student Name</th>
+                            <th>Maximum Marks</th>
+                            <th>Obtained Marks</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="marksTableBody">
+                        <tr>
+                            <td colspan="5">
+                                Select a subject and exam to view students.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="faculty.js"></script>
+    <script src="faculty-history.js"></script>
+    <script src="faculty-summary.js"></script>
+    <script src="faculty-low-attendance.js"></script>
+    <script src="faculty-marks.js"></script>
+
+</body>
+</html>

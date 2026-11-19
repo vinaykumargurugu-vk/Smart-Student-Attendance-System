@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <h2>Student System</h2>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="students.html">Students</a>
+            <a href="attendance.html">Attendance</a>
+            <a href="marks.html">Marks</a>
+            <a href="performance.html">Performance</a>
+            <a href="reports.html">Reports</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <h1>Students Management</h1>
+
+        <h2>Add / Update Student</h2>
+
+        <form id="studentForm">
+
+            <input type="text" id="roll_no"
+                   placeholder="Roll Number" required>
+
+            <input type="text" id="name"
+                   placeholder="Student Name"
+                   pattern="[a-zA-Z .'-]+"
+                   title="Enter a valid name" required>
+
+            <input type="email" id="email"
+                   placeholder="Email" required>
+
+            <input type="text" id="department"
+                   placeholder="Department" required>
+
+            <input type="number" id="year_of_study"
+                   placeholder="Year of Study"
+                   min="1" max="6" step="1" required>
+
+            <input type="tel" id="phone"
+                   placeholder="10-digit Phone Number"
+                   pattern="[0-9]{10}"
+                   maxlength="10"
+                   title="Enter exactly 10 digits" required>
+
+            <button type="submit" id="submitButton">
+                Add Student
+            </button>
+
+        </form>
+
+        <p id="message" role="status" aria-live="polite"></p>
+
+        <br>
+
+        <h2>All Registered Students</h2>
+
+        <input type="text" id="searchInput"
+               placeholder="Search by name or roll number...">
+
+        <br><br>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Roll Number</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="studentTable">
+                <tr>
+                    <td colspan="8">Loading students...</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+</div>
+
+<script>
+
+let allStudents = [];
+let editingRollNo = null;
+
+const form = document.getElementById("studentForm");
+const message = document.getElementById("message");
+
+// Display messages
+function showMessage(text, isError = false) {
+    message.textContent = text;
+    message.style.color = isError ? "red" : "green";
+}
+
+// Safely read JSON API responses
+async function readResponse(response) {
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(result.error || result.message || "Request failed");
+    }
+
+    return result;
+}
+
+// 1. Load All Students
+async function loadStudents() {
+
+    try {
+        const response = await fetch("/api/students");
+
+        if (!response.ok) {
+            throw new Error("Unable to load students");
+        }
+
+        allStudents = await response.json();
+        displayStudents(allStudents);
+
+    } catch (error) {
+        document.getElementById("studentTable").innerHTML =
+            '<tr><td colspan="8">Error loading students.</td></tr>';
+
+        console.error(error);
+    }
+}
+
+// 2. Display Students
+function displayStudents(students) {
+
+    const table = document.getElementById("studentTable");
+    table.replaceChildren();
+
+    if (students.length === 0) {
+        const row = table.insertRow();
+        const cell = row.insertCell();
+        cell.colSpan = 8;
+        cell.textContent = "No students found.";
+        return;
+    }
+
+    students.forEach(student => {
+
+        const row = table.insertRow();
+
+        [
+            student.student_id,
+            student.roll_no,
+            student.name,
+            student.email,
+            student.department,
+            student.year_of_study,
+            student.phone
+        ].forEach(value => {
+            const cell = row.insertCell();
+            cell.textContent = value ?? "";
+        });
+
+        const actionCell = row.insertCell();
+
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+        editButton.addEventListener("click", () => {
+            editStudent(student.roll_no);
+        });
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", () => {
+            deleteStudent(student.roll_no);
+        });
+
+        actionCell.append(editButton, deleteButton);
+    });
+}
+
+// 3. Edit Student
+function editStudent(rollNo) {
+
+    const student = allStudents.find(
+        s => s.roll_no === rollNo
+    );
+
+    if (!student) return;
+
+    editingRollNo = student.roll_no;
+
+    document.getElementById("roll_no").value = student.roll_no;
+    document.getElementById("roll_no").readOnly = true;
+    document.getElementById("name").value = student.name;
+    document.getElementById("email").value = student.email;
+    document.getElementById("department").value = student.department;
+    document.getElementById("year_of_study").value = student.year_of_study;
+    document.getElementById("phone").value = student.phone;
+
+    document.getElementById("submitButton").textContent =
+        "Update Student";
+
+    showMessage("Editing student: " + student.roll_no);
+
+    window.scrollTo(0, 0);
+}
+
+// Reset form
+function resetStudentForm() {
+    form.reset();
+    editingRollNo = null;
+
+    document.getElementById("roll_no").readOnly = false;
+
+    document.getElementById("submitButton").textContent =
+        "Add Student";
+}
+
+// 4. Delete Student
+async function deleteStudent(rollNo) {
+
+    if (!confirm("Are you sure you want to delete " + rollNo + "?")) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `/api/students/${encodeURIComponent(rollNo)}`,
+            { method: "DELETE" }
+        );
+
+        const result = await readResponse(response);
+
+        showMessage(result.message || "Student deleted successfully!");
+
+        if (editingRollNo === rollNo) {
+            resetStudentForm();
+        }
+
+        await loadStudents();
+
+    } catch (error) {
+        showMessage(error.message, true);
+    }
+}
+
+// 5. Search Students
+document.getElementById("searchInput")
+    .addEventListener("input", function() {
+
+        const searchValue = this.value.toLowerCase();
+
+        const filteredStudents = allStudents.filter(student =>
+            student.name.toLowerCase().includes(searchValue) ||
+            student.roll_no.toLowerCase().includes(searchValue)
+        );
+
+        displayStudents(filteredStudents);
+    });
+
+// 6. Frontend Validation
+function validateStudent(student) {
+
+    if (!student.roll_no) {
+        return "Roll number is required";
+    }
+
+    if (!/^[a-zA-Z .'-]+$/.test(student.name)) {
+        return "Enter a valid student name";
+    }
+
+    if (!/^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(student.email)) {
+        return "Enter a valid email address";
+    }
+
+    if (!student.department) {
+        return "Department is required";
+    }
+
+    const year = Number(student.year_of_study);
+
+    if (!Number.isInteger(year) || year < 1 || year > 6) {
+        return "Year of study must be between 1 and 6";
+    }
+
+    if (!/^[0-9]{10}$/.test(student.phone)) {
+        return "Phone number must contain exactly 10 digits";
+    }
+
+    return null;
+}
+
+// 7. Add or Update Student
+form.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const student = {
+        roll_no: document.getElementById("roll_no").value.trim(),
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        department: document.getElementById("department").value.trim(),
+        year_of_study: document.getElementById("year_of_study").value,
+        phone: document.getElementById("phone").value.trim()
+    };
+
+    const validationError = validateStudent(student);
+
+    if (validationError) {
+        showMessage(validationError, true);
+        return;
+    }
+
+    try {
+
+        const isEditing = editingRollNo !== null;
+
+        const url = isEditing
+            ? `/api/students/${encodeURIComponent(editingRollNo)}`
+            : "/api/students";
+
+        const response = await fetch(url, {
+            method: isEditing ? "PUT" : "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(student)
+        });
+
+        const result = await readResponse(response);
+
+        showMessage(result.message || "Operation successful!");
+
+        resetStudentForm();
+
+        await loadStudents();
+
+    } catch (error) {
+        showMessage(error.message, true);
+        console.error(error);
+    }
+});
+
+// 8. Load Students When Page Opens
+loadStudents();
+
+</script>
+
+</body>
+</html>

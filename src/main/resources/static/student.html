@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="student.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Dashboard Header -->
+        <header>
+            <h1>Student Dashboard</h1>
+            <button id="logoutBtn">Logout</button>
+        </header>
+
+        <!-- 1. Student Profile -->
+        <section>
+
+            <h2>My Profile</h2>
+
+            <div id="profile">
+                Loading profile...
+            </div>
+
+        </section>
+
+        <!-- 2. Student Attendance -->
+        <section>
+
+            <h2>My Attendance</h2>
+
+            <div id="attendance">
+                Loading attendance...
+            </div>
+
+        </section>
+
+        <!-- 3. Academic Performance -->
+        <section class="dashboard-section">
+
+            <h2>My Academic Performance</h2>
+
+            <div class="performance-cards">
+
+                <div class="performance-card">
+                    <h3>Total Exams</h3>
+                    <p id="totalExams">0</p>
+                </div>
+
+                <div class="performance-card">
+                    <h3>Marks Obtained</h3>
+                    <p id="totalObtainedMarks">0</p>
+                </div>
+
+                <div class="performance-card">
+                    <h3>Maximum Marks</h3>
+                    <p id="totalMaxMarks">0</p>
+                </div>
+
+                <div class="performance-card">
+                    <h3>Overall Percentage</h3>
+                    <p id="overallPercentage">0%</p>
+                </div>
+
+            </div>
+
+            <!-- Performance Analysis -->
+            <div class="performance-analysis">
+
+                <h3>Performance Analysis</h3>
+
+                <div class="progress-info">
+
+                    <span>Overall Performance</span>
+
+                    <span id="progressPercentage">0%</span>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div id="performanceProgress"
+                         class="progress-fill">
+                    </div>
+
+                </div>
+
+                <div class="performance-status">
+
+                    <h3 id="performanceStatus">
+                        Calculating...
+                    </h3>
+
+                    <p id="performanceRemark">
+                        Your academic performance will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <p id="performanceMessage"></p>
+
+        </section>
+
+        <!-- 4. Subject-wise Performance Chart -->
+        <section class="dashboard-section">
+
+            <h2>Subject-wise Performance</h2>
+
+            <p>Compare your academic performance across subjects.</p>
+
+            <div id="subjectPerformanceChart" class="subject-chart">
+
+                <p>Loading subject performance...</p>
+
+            </div>
+
+            <p id="subjectChartMessage"></p>
+
+        </section>
+
+        <!-- 5. Exam-wise Marks -->
+        <section class="dashboard-section">
+
+            <h2>My Exam Results</h2>
+
+            <p>View your subject-wise and exam-wise marks.</p>
+
+            <p id="marksMessage"></p>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Subject Code</th>
+                            <th>Subject Name</th>
+                            <th>Exam Name</th>
+                            <th>Maximum Marks</th>
+                            <th>Obtained Marks</th>
+                            <th>Percentage</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="marksTableBody">
+
+                        <tr>
+                            <td colspan="6">Loading marks...</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="student.js"></script>
+
+</body>
+
+</html>

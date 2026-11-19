@@ -1,0 +1,296 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #263b5e;
+}
+
+.faculty-container {
+    display: block !important;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faculty-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.faculty-container header h1 {
+    margin: 0;
+}
+
+.faculty-container section {
+    display: block;
+    width: 100%;
+    background: white;
+    padding: 22px;
+    margin-bottom: 22px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.faculty-container h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+
+.faculty-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.faculty-container th,
+.faculty-container td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.faculty-container th {
+    background: #263b5e;
+    color: white;
+}
+
+.faculty-container select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 10px 0 15px;
+}
+
+.faculty-container button {
+    background: #263b5e;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .faculty-container section {
+        padding: 12px;
+        overflow-x: auto;
+    }
+
+    .faculty-container header {
+        flex-wrap: wrap;
+    }
+    .history-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: end;
+    margin: 20px 0;
+}
+
+.history-controls div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-controls input,
+.history-controls select {
+    padding: 10px;
+    min-width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.history-controls button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#historyMessage {
+    margin: 12px 0;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+/* Attendance Summary */
+
+.summary-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.summary-controls div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.summary-controls select {
+    min-width: 220px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.summary-controls button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.attendance-summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin: 20px 0;
+}
+
+.summary-card {
+    background: #f1f5f9;
+    padding: 22px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.summary-card h3 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.summary-card p {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.present-card {
+    background: #dcfce7;
+}
+
+.absent-card {
+    background: #fee2e2;
+}
+
+.percentage-card {
+    background: #dbeafe;
+}
+
+@media (max-width: 768px) {
+    .attendance-summary-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 450px) {
+    .attendance-summary-cards {
+        grid-template-columns: 1fr;
+    }
+}
+/* Low Attendance Report */
+
+.low-attendance-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.low-attendance-controls div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.low-attendance-controls select {
+    min-width: 220px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.low-attendance-controls button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.low-attendance-badge {
+    display: inline-block;
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+/* Faculty Marks Management */
+
+.marks-controls {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.marks-controls div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 220px;
+}
+
+.marks-controls select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#marksTableBody input {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#marksTableBody button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+#marksTableBody button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#marksMessage {
+    margin: 12px 0;
+    font-weight: bold;
+}
+}
